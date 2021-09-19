@@ -1,16 +1,19 @@
 package study.datajpa.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+/**
+ * protected Member() {
+ * }
+ * -> @NoArgsConstructor(access = AccessLevel.PROTECTED) 으로 대체
+ */
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
+@ToString(of = {"id", "username", "age"}) // ToString 메소드에서 출력할 변수 설정
 public class Member {
 
     @Id
@@ -19,15 +22,28 @@ public class Member {
     private Long id;
 
     private String username;
+    private int age;
 
-    protected Member() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     public Member(String username) {
         this.username = username;
     }
 
-    public void changeUsername(String username) {
+    public Member(String username, int age, Team team) {
         this.username = username;
+        this.age = age;
+        if (team != null) {
+            changeTeam(team);
+        }
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
     }
 }
+
+
