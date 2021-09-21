@@ -18,7 +18,7 @@ import javax.persistence.*;
  * (em.createNamedQuery("Member.findByUsername", Member.class))
  * 2. MemberRepository 에서 인터페이스를 작성한다
  * (List<Member> findByUsername(@Param("username") String username);)
- *
+ * <p>
  * NamedQuery의 장점
  * -> JPQL 문법이 잘못되면 어플리케이션 로딩 시점에 에러를 발생시킨다. (오타를 잡을 수 있다)
  */
@@ -35,7 +35,7 @@ import javax.persistence.*;
 //        name = "Member.all",
 //        attributeNodes = @NamedAttributeNode("team")
 //)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue

@@ -488,4 +488,17 @@ public class MemberRepositoryTest {
         // then
 
     }
+
+    /**
+     * 사용자 정의 메서드 호출 코드
+     */
+    @Test
+    public void callCustom() throws Exception {
+        // given
+        List<Member> memberCustom = memberRepository.findMemberCustom();
+        // when
+
+        // then
+
+    }
 }

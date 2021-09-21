@@ -15,7 +15,14 @@ spring:
         # show_sql: true
         format_sql: true
 
+  data:
+    web:
+      pageable:
+        default-page-size: 20 # 기본 페이지 사이즈
+        max-page-size: 2000 # 최대 페이지 사이즈
+
 # 쿼리기록을 로그파일에 남긴다.
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trace
+
