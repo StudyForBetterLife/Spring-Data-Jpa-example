@@ -263,4 +263,12 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     List<Member> findLockByUsername(String name);
+
+    /**
+     * 프로젝션
+     *
+     * UsernameOnly 인터페이스의 구현체가 담겨서 반환된다.
+     */
+    List<UsernameOnly> findProjectionsByUsername(String username);
+
 }
